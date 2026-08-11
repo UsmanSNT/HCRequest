@@ -101,7 +101,7 @@ function App() {
             {screen === 'complete' && <Complete form={form} onEdit={() => setScreen('effects')} onConfirm={reset} />}
           </>
         )}
-        <BottomNav active={screen === 'home' ? '홈' : '요청서'} onRequest={startNewRequest} />
+        <BottomNav active={screen === 'home' ? '홈' : '요청서'} onHome={() => setScreen('home')} onRequest={startNewRequest} />
       </section>
     </main>
   )
@@ -246,7 +246,7 @@ function Complete({ form, onEdit, onConfirm }) {
   )
 }
 
-function BottomNav({ active, onRequest }) {
+function BottomNav({ active, onHome, onRequest }) {
   const items = [
     ['home', '홈'],
     ['edit_document', '요청서'],
@@ -254,7 +254,7 @@ function BottomNav({ active, onRequest }) {
     ['settings', '설정'],
   ]
 
-  return <nav className="bottom-nav">{items.map(([icon, label]) => <button className={active === label ? 'active' : ''} key={label} onClick={label === '요청서' ? onRequest : undefined}><i className="material-symbols-outlined">{icon}</i><span>{label}</span></button>)}</nav>
+  return <nav className="bottom-nav">{items.map(([icon, label]) => <button className={active === label ? 'active' : ''} key={label} onClick={label === '홈' ? onHome : label === '요청서' ? onRequest : undefined}><i className="material-symbols-outlined">{icon}</i><span>{label}</span></button>)}</nav>
 }
 
 export default App
