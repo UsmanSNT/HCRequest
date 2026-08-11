@@ -1,4 +1,4 @@
-Set-Location "C:\Users\jyh91\OneDrive\바탕 화면\HCRequest"
+Set-Location -LiteralPath $PSScriptRoot -ErrorAction Stop
 
 Write-Host ""
 Write-Host "=== HCRequest GitHub Push ==="
