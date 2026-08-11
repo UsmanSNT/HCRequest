@@ -166,6 +166,7 @@ button { cursor: pointer; }
   .stepper { padding-left: var(--mobile-gutter); padding-right: var(--mobile-gutter); }
   .stepper::before { left: calc(12.5% + 15px); right: calc(12.5% + 15px); }
   .content-grid > *, .effect-card, .field, .upload-box { min-width: 0; }
+  .video-grid { grid-template-columns: 1fr; }
   .bottom-nav { position: fixed; left: 50%; right: auto; bottom: 0; width: 100%; max-width: 767px; height: calc(70px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); transform: translateX(-50%); box-shadow: 0 -5px 18px rgba(31, 37, 58, .08); }
   .hero-card { min-height: 165px; }
   .hero-card p { font-size: 16px; }

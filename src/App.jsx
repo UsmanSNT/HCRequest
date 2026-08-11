@@ -242,6 +242,7 @@ function NavActions({ onBack, onNext }) {
 
 function VideoLibrary() {
   const videos = [1, 2, 3, 4]
+  const mediaBase = `${import.meta.env.BASE_URL}media/`
 
   return (
     <div className="screen-content video-library">
@@ -251,7 +252,7 @@ function VideoLibrary() {
         {videos.map((number) => (
           <article className="video-card" key={number}>
             <video controls preload="metadata" playsInline>
-              <source src={`/media/video-${number}.mp4`} type="video/mp4" />
+              <source src={`${mediaBase}video-${number}.mp4`} type="video/mp4" />
               브라우저에서 영상을 재생할 수 없습니다.
             </video>
             <strong>영상 {number}</strong>
