@@ -124,7 +124,7 @@ function Header({ title, onBack }) {
 function Home({ onStart }) {
   return (
     <div className="home-content">
-      <header className="home-header"><button className="icon-button" aria-label="메뉴"><span className="material-symbols-outlined">menu</span></button><h1>햅틱 콘텐츠 요청</h1><button className="icon-button" aria-label="알림"><span className="material-symbols-outlined">notifications</span></button></header>
+      <header className="home-header"><span className="header-space" /><h1>햅틱 콘텐츠 요청</h1><span className="header-space" /></header>
       <div className="hero-card">
         <div><p>기존 교육콘텐츠를<br />햅틱교구와 연동하여<br />더 생생한 학습 경험을<br />만들어보세요!</p></div>
         <div className="hero-art" aria-hidden="true"><span className="device">◉</span><span className="bear">🧸</span><span className="book">▰</span></div>
