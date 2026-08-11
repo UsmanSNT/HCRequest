@@ -91,6 +91,11 @@ function App() {
       <section className={`phone ${screen === 'home' ? 'home-phone' : ''}`}>
         {screen === 'home' ? (
           <Home onStart={startNewRequest} />
+        ) : screen === 'library' ? (
+          <>
+            <Header title="콘텐츠" onBack={() => setScreen('home')} />
+            <VideoLibrary />
+          </>
         ) : (
           <>
             <Header title={screen === 'basic' ? '새 요청서 작성' : screen === 'content' ? '콘텐츠 등록' : screen === 'effects' ? '효과 설정' : '요청 완료'} onBack={screen === 'basic' ? () => setScreen('home') : screen === 'content' ? () => setScreen('basic') : screen === 'effects' ? () => setScreen('content') : () => setScreen('effects')} />
@@ -101,7 +106,12 @@ function App() {
             {screen === 'complete' && <Complete form={form} onEdit={() => setScreen('effects')} onConfirm={reset} />}
           </>
         )}
-        <BottomNav active={screen === 'home' ? '홈' : '요청서'} onHome={() => setScreen('home')} onRequest={startNewRequest} />
+        <BottomNav
+          active={screen === 'home' ? 'home' : screen === 'library' ? 'content' : 'request'}
+          onHome={() => setScreen('home')}
+          onRequest={startNewRequest}
+          onContent={() => setScreen('library')}
+        />
       </section>
     </main>
   )
@@ -230,6 +240,28 @@ function NavActions({ onBack, onNext }) {
   return <div className="nav-actions"><button className="secondary-button" onClick={onBack}>‹ 이전</button><button className="primary-button" onClick={onNext}>다음</button></div>
 }
 
+function VideoLibrary() {
+  const videos = [1, 2, 3, 4]
+
+  return (
+    <div className="screen-content video-library">
+      <h2>콘텐츠 영상</h2>
+      <p className="video-library-helper">원하는 영상을 선택해 재생하세요.</p>
+      <div className="video-grid">
+        {videos.map((number) => (
+          <article className="video-card" key={number}>
+            <video controls preload="metadata" playsInline>
+              <source src={`/media/video-${number}.mp4`} type="video/mp4" />
+              브라우저에서 영상을 재생할 수 없습니다.
+            </video>
+            <strong>영상 {number}</strong>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function Complete({ form, onEdit, onConfirm }) {
   return (
     <div className="screen-content complete-screen">
@@ -246,15 +278,14 @@ function Complete({ form, onEdit, onConfirm }) {
   )
 }
 
-function BottomNav({ active, onHome, onRequest }) {
+function BottomNav({ active, onHome, onRequest, onContent }) {
   const items = [
-    ['home', '홈'],
-    ['edit_document', '요청서'],
-    ['pageview', '콘텐츠'],
-    ['settings', '설정'],
+    { id: 'home', icon: 'home', label: '홈', onClick: onHome },
+    { id: 'request', icon: 'edit_document', label: '요청서', onClick: onRequest },
+    { id: 'content', icon: 'pageview', label: '콘텐츠', onClick: onContent },
   ]
 
-  return <nav className="bottom-nav">{items.map(([icon, label]) => <button className={active === label ? 'active' : ''} key={label} onClick={label === '홈' ? onHome : label === '요청서' ? onRequest : undefined}><i className="material-symbols-outlined">{icon}</i><span>{label}</span></button>)}</nav>
+  return <nav className="bottom-nav">{items.map((item) => <button className={active === item.id ? 'active' : ''} key={item.id} onClick={item.onClick}><i className="material-symbols-outlined">{item.icon}</i><span>{item.label}</span></button>)}</nav>
 }
 
 export default App
