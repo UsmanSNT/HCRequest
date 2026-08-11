@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const initialForm = {
   contentName: '',
@@ -80,12 +80,17 @@ function App() {
     setScreen('home')
   }
 
+  const startNewRequest = () => {
+    setForm(initialForm)
+    setErrors({})
+    setScreen('basic')
+  }
+
   return (
     <main className="app-shell">
       <section className={`phone ${screen === 'home' ? 'home-phone' : ''}`}>
-        <StatusBar />
         {screen === 'home' ? (
-          <Home onStart={() => setScreen('basic')} />
+          <Home onStart={startNewRequest} />
         ) : (
           <>
             <Header title={screen === 'basic' ? '새 요청서 작성' : screen === 'content' ? '콘텐츠 등록' : screen === 'effects' ? '효과 설정' : '요청 완료'} onBack={screen === 'basic' ? () => setScreen('home') : screen === 'content' ? () => setScreen('basic') : screen === 'effects' ? () => setScreen('content') : () => setScreen('effects')} />
@@ -96,34 +101,9 @@ function App() {
             {screen === 'complete' && <Complete form={form} onEdit={() => setScreen('effects')} onConfirm={reset} />}
           </>
         )}
-        <BottomNav active={screen === 'home' ? '홈' : '요청서'} />
+        <BottomNav active={screen === 'home' ? '홈' : '요청서'} onRequest={startNewRequest} />
       </section>
     </main>
-  )
-}
-
-function StatusBar() {
-  const formatTime = () => new Intl.DateTimeFormat('ko-KR', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: false,
-  }).format(new Date())
-  const [time, setTime] = useState(formatTime)
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setTime(formatTime()), 30_000)
-    return () => window.clearInterval(timer)
-  }, [])
-
-  return (
-    <div className="status-bar">
-      <time dateTime={new Date().toISOString()}>{time}</time>
-      <div className="phone-status" aria-label="모바일 신호, 와이파이 및 배터리 상태">
-        <span className="material-symbols-outlined">android_cell_4_bar</span>
-        <span className="material-symbols-outlined">wifi</span>
-        <span className="material-symbols-outlined battery-icon">battery_horiz_075</span>
-      </div>
-    </div>
   )
 }
 
@@ -266,16 +246,15 @@ function Complete({ form, onEdit, onConfirm }) {
   )
 }
 
-function BottomNav({ active }) {
+function BottomNav({ active, onRequest }) {
   const items = [
     ['home', '홈'],
     ['edit_document', '요청서'],
     ['pageview', '콘텐츠'],
-    ['notifications', '알림'],
     ['settings', '설정'],
   ]
 
-  return <nav className="bottom-nav">{items.map(([icon, label]) => <button className={active === label ? 'active' : ''} key={label}><i className="material-symbols-outlined">{icon}</i><span>{label}</span></button>)}</nav>
+  return <nav className="bottom-nav">{items.map(([icon, label]) => <button className={active === label ? 'active' : ''} key={label} onClick={label === '요청서' ? onRequest : undefined}><i className="material-symbols-outlined">{icon}</i><span>{label}</span></button>)}</nav>
 }
 
 export default App

@@ -9,11 +9,6 @@ button { cursor: pointer; }
 .app-shell { min-height: 100vh; display: grid; place-items: start center; padding: 24px; background: radial-gradient(circle at top, #fff 0, #f7f7fb 45%, #eef0f6 100%); }
 .phone { width: min(100%, 430px); min-height: 820px; position: relative; overflow: hidden; background: #fff; border: 1px solid #dfe2ea; border-radius: 25px; box-shadow: 0 20px 60px rgba(35, 33, 61, .11); padding-bottom: 88px; }
 .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: 'liga'; -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }
-.status-bar { height: 37px; padding: 10px 22px 3px 25px; display: flex; align-items: center; justify-content: space-between; color: #111827; }
-.status-bar time { min-width: 42px; font-size: 11px; font-weight: 700; letter-spacing: -.2px; }
-.phone-status { display: flex; align-items: center; gap: 3px; }
-.phone-status .material-symbols-outlined { font-size: 15px; font-variation-settings: 'OPSZ' 20, 'wght' 500, 'FILL' 1, 'GRAD' 0; }
-.phone-status .battery-icon { width: 20px; margin-left: 1px; font-size: 20px; transform: scaleX(1.12); transform-origin: center; }
 .top-header, .home-header { height: 56px; display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; padding: 0 13px; }
 .home-header { padding-inline: 0; }
 .top-header h1, .home-header h1 { margin: 0; text-align: center; font-size: 17px; font-weight: 700; }
@@ -140,7 +135,7 @@ button { cursor: pointer; }
 .summary-card dt { color: #8a909e; }.summary-card dd { margin: 0; color: #363c4c; overflow-wrap: anywhere; }
 .confirm-button, .outline-button { width: 100%; margin-top: 17px; }
 .outline-button { margin-top: 8px; color: #303748; border: 1px solid #cfd4df; background: white; }
-.bottom-nav { position: absolute; z-index: 10; left: 0; right: 0; bottom: 0; height: 70px; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid #e8eaf0; background: rgba(255,255,255,.97); }
+.bottom-nav { position: absolute; z-index: 10; left: 0; right: 0; bottom: 0; height: 70px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #e8eaf0; background: rgba(255,255,255,.97); }
 .bottom-nav button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #81889a; border: 0; background: transparent; }
 .bottom-nav i { font-size: 22px; line-height: 1; font-style: normal; font-variation-settings: 'OPSZ' 24, 'wght' 400, 'FILL' 0, 'GRAD' 0; }.bottom-nav span { font-size: 9px; font-weight: 600; }.bottom-nav button.active { color: #6745dd; }.bottom-nav button.active i { font-variation-settings: 'OPSZ' 24, 'wght' 500, 'FILL' 1, 'GRAD' 0; }
 
